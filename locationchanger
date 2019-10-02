@@ -1,6 +1,10 @@
 #!/bin/bash
 
 # automatically change configuration of Mac OS X based on location
+# author: Domenico Silletti <domenico@silletti.it>
+# version: 0.5.0
+
+# previous release by
 # author: Rocco Georgi <rocco@pavingways.com>
 # version: 0.4.0
 
@@ -22,57 +26,60 @@ sleep 2
 SSID=`/System/Library/PrivateFrameworks/Apple80211.framework/Versions/A/Resources/airport -I | awk '/ SSID:/ {print $2}'`
 echo `date` "New SSID found: $SSID"
 
-# empty location var
-LOCATION=
+# current location var
+CURRENT_LOCATION=`scselect | sed '1d' | grep '*' | sed 's/.*(\(.*\))/\1/'`
 
 # LOCATIONS
-# (use to be used Location name here)
-# =============================================
-Location_Automatic="Automatic"
-Location_Home="Home"
-Location_Work="Company Intranet"
+# (change the location names to match your MAC configuration, verify the location name withthe scselect command from CLI)
+# ============================================================
+LOCATION_HOME="Home"
+LOCATION_WORK="Work"
+LOCATION_AUTOMATIC="Automatic"  #Automatic location in case of no match, should be "Automatic", check with scselect command from CLI
 
 # SSIDS
-# =====
-SSID_TelekomPublic=Telekom
-SSID_Home=HomeSSID
-SSID_Work=WorkSSID
+# (change the SSID names to match your Wi-Fi networks)
+# ============================================================
+SSID_HOME="Home-Wifi-SSID"
+SSID_WORK="Company-Wifi-SSID"
 
 
 # SSID -> LOCATION mapping
 case $SSID in
-	$SSID_TelekomPublic ) LOCATION="$Location_Automatic";;
-	$SSID_Home          ) LOCATION="$Location_Home";;
-	$SSID_Work  ) LOCATION="$Location_Work";;
-	# ... add more here
+	$SSID_HOME )
+		if [ $CURRENT_LOCATION != "$LOCATION_HOME" ]
+		then
+			scselect "$LOCATION_HOME"
+			osascript -e 'display notification "Network Location Changed to '$LOCATION_HOME'" with title "Network Location Changed"'
+			echo "--> Location changed to: $LOCATION_HOME"
+		else
+			echo "--> No change, location was already: $LOCATION_HOME"
+
+		fi
+	;;
+	$SSID_WORK )
+		if [ $CURRENT_LOCATION != "$LOCATION_WORK" ]
+		then
+			scselect "$LOCATION_WORK"
+			osascript -e 'display notification "Network Location Changed to '$LOCATION_WORK'" with title "Network Location Changed"'
+			echo "--> Location changed to: $LOCATION_WORK"
+		else
+			echo "--> No change, location was already: $LOCATION_WORK"
+
+		fi
+	;;
+	* )
+		if [ $CURRENT_LOCATION != "$LOCATION_AUTOMATIC" ]
+		then
+			scselect "$LOCATION_AUTOMATIC"
+			osascript -e 'display notification "Network Location Changed to '$LOCATION_AUTOMATIC'" with title "Network Location Changed"'
+			echo "--> Location changed to: $LOCATION_AUTOMATIC"
+		else
+			echo "--> No change, location was already: $LOCATION_AUTOMATIC"
+		fi
+	;;
 esac
-	REASON="SSID changed to $SSID"
 
 
-# still didn't get a location -> use Location_Automatic
-if [ -z "$LOCATION" ]; then
-	LOCATION="$Location_Automatic"
-	REASON="Automatic Fallback"
-fi
 
-# change network location
-scselect "$LOCATION"
-
-case $LOCATION in
-	$Location_Automatic )
-		osascript -e 'display notification "Network Location Changed to Automatic" with title "Network Location Changed"'
-	;;
-
-	$Location_Work )
-		osascript -e 'display notification "Network Location Changed to Work" with title "Network Location Changed"'
-	;;
-
-	$Location_Home )
-		osascript -e 'display notification "Network Location Changed to Home" with title "Network Location Changed"'
-	;;
-	# ... add more here
-esac
-
-echo "--> Location Changer: $LOCATION - $REASON"
 
 exit 0
