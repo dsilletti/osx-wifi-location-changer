@@ -86,7 +86,7 @@ esac
 ### MacOS Notifications
 The script triggers a MacOS Notification when a Location is changed.
 
-## Installation
+## Install the script
 
 ### Automated Installation
 
@@ -111,6 +111,13 @@ chmod +x /usr/local/bin/locationchanger
 Load LocationChanger.plist as a launchd daemon:
 ```bash
 launchctl load ~/Library/LaunchAgents/LocationChanger.plist
+```
+
+## Uninstall the script
+
+Execute:
+```bash
+./install.sh
 ```
 ## Logfile
 
