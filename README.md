@@ -19,7 +19,8 @@ or use the CLI:
 $ scselect
 Defined sets include: (* == current set)
  * XXXXXXXX-AAAA-BBBB-CCCC-XXXXXXXXXXX	(Home)
-   YYYYYYYY-AAAA-BBBB-CCCC-YYYYYYYYYYY	(Automatic)
+   YYYYYYYY-AAAA-BBBB-CCCC-YYYYYYYYYYY	(Work)
+   ZZZZZZZZ-AAAA-BBBB-CCCC-ZZZZZZZZZZZ	(Automatic)
 ```
 
 
