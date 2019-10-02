@@ -2,8 +2,8 @@
 
 * Automatically changes the Mac OSX network location when Wi-Fi connection SSID changes
 * Allows having different network settings depending on the Wi-Fi SSID
-NEW: * Only change the location in case is not already in use
-NEW: * In case of no match, fallback to Automatic (or custom) Location
+* NEW: Only change the location in case is not already in use
+* NEW: In case of no match, fallback to Automatic (or custom) Location
 
 **Note:** macOS Mojave compatible (tested with 10.14.6)
 
