@@ -114,7 +114,7 @@ launchctl load ~/Library/LaunchAgents/LocationChanger.plist
 ```
 ## Logfile
 
-Logfile location can be adjusted in locationchanger, around line 12:
+Logfile location can be adjusted in locationchanger
 ```bash
 exec &>/usr/local/var/log/locationchanger.log
 ```
