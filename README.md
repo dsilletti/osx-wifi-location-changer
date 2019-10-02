@@ -16,7 +16,7 @@ Edit locationchanger and change/add locations to be set:
 **Note:** Ensure you use the exact names as they appear under "Location" in OSX's System Preferences -> Network
 or use the CLI:
 ```bash
-scselect
+$ scselect
 Defined sets include: (* == current set)
  * XXXXXXXX-AAAA-BBBB-CCCC-XXXXXXXXXXX	(Home)
    YYYYYYYY-AAAA-BBBB-CCCC-YYYYYYYYYYY	(Automatic)
