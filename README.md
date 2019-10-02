@@ -115,10 +115,21 @@ launchctl load ~/Library/LaunchAgents/LocationChanger.plist
 
 ## Uninstall the script
 
+### Automatic
+
 Execute:
 ```bash
-./install.sh
+./uninstall.sh
 ```
+
+### Manual
+Execute:
+```bash
+launchctl unload ~/Library/LaunchAgents/LocationChanger.plist
+sudo rm ~/Library/LaunchAgents/LocationChanger.plist
+sudo rm /usr/local/bin/locationchanger
+```
+
 ## Logfile
 
 Logfile location can be adjusted in locationchanger
