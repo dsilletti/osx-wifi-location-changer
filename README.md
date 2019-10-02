@@ -13,6 +13,15 @@ There are two areas that need to be modified in the locationchanger script, Loca
 ### Locations
 Edit locationchanger and change/add locations to be set:
 
+```bash
+# LOCATIONS
+# (change the location names to match your MAC configuration, verify the location name withthe scselect command from CLI)
+# ============================================================
+LOCATION_HOME="Home"
+LOCATION_WORK="Work"
+LOCATION_AUTOMATIC="Automatic"  #Automatic location in case of no match, should be "Automatic", check with scselect command from CLI
+```
+
 **Note:** Ensure you use the exact names as they appear under "Location" in OSX's System Preferences -> Network
 or use the CLI:
 ```bash
@@ -23,16 +32,6 @@ Defined sets include: (* == current set)
    ZZZZZZZZ-AAAA-BBBB-CCCC-ZZZZZZZZZZZ	(Automatic)
 ```
 
-
-```bash
-# LOCATIONS
-# (change the location names to match your MAC configuration, verify the location name withthe scselect command from CLI)
-# ============================================================
-LOCATION_HOME="Home"
-LOCATION_WORK="Work"
-LOCATION_AUTOMATIC="Automatic"  #Automatic location in case of no match, should be "Automatic", check with scselect command from CLI
-
-```
 
 ### SSIDs
 Edit locationchanger and add/edit SSIDs to be detected:
